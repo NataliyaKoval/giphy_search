@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:giphy_search/consts/app_colors.dart';
 import 'package:giphy_search/domain/models/gif.dart';
@@ -23,9 +25,11 @@ class _SearchResultListState extends State<SearchResultList> {
   void initState() {
     super.initState();
     _scrollController.addListener(() {
-      //TODO
+      FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
+      Size size = view.physicalSize / view.devicePixelRatio;
+      double height = size.height;
       if (_scrollController.position.pixels >
-          _scrollController.position.maxScrollExtent - 300) {
+          _scrollController.position.maxScrollExtent - height/2) {
         widget.onFinishingScroll();
       }
     });

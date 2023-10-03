@@ -50,7 +50,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  void _clearSearchResultList(ChangeInputEvent event, Emitter<SearchState> emit) {
+  void _clearSearchResultList(
+      ChangeInputEvent event, Emitter<SearchState> emit) {
     allGifs.clear();
   }
 }
