@@ -7,7 +7,10 @@ import 'package:giphy_search/presentation/search_screen/bloc/search_bloc.dart';
 class SearchTextField extends StatefulWidget {
   const SearchTextField({
     Key? key,
+    required this.inputController,
   }) : super(key: key);
+
+  final TextEditingController inputController;
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -15,14 +18,12 @@ class SearchTextField extends StatefulWidget {
 
 class _SearchTextFieldState extends State<SearchTextField> {
   late FocusNode _textFieldFocusNode;
-  late TextEditingController _inputController;
   bool _isFilled = false;
   bool _isSuffixIconVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _inputController = TextEditingController();
     _textFieldFocusNode = FocusNode()..addListener(() => _changeInputFilling());
   }
 
@@ -34,7 +35,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   void dispose() {
-    _inputController.dispose();
     _textFieldFocusNode.dispose();
     super.dispose();
   }
@@ -42,7 +42,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: _inputController,
+      controller: widget.inputController,
       focusNode: _textFieldFocusNode,
       decoration: InputDecoration(
         filled: _isFilled,
@@ -91,15 +91,16 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   void _onInputChanged(BuildContext context, String value) {
     setState(() {
-      _isSuffixIconVisible = _inputController.text.isNotEmpty;
+      _isSuffixIconVisible = widget.inputController.text.isNotEmpty;
     });
     if (value.trim().isNotEmpty) {
+      context.read<SearchBloc>().add(ChangeInputEvent());
       context.read<SearchBloc>().add(SearchGifsEvent(value));
     }
   }
 
   void _onClearInput() {
-    _inputController.clear();
+    widget.inputController.clear();
     setState(() {
       _isSuffixIconVisible = false;
     });

@@ -8,3 +8,5 @@ class SearchGifsEvent extends SearchEvent {
 
   final String query;
 }
+
+class ChangeInputEvent extends SearchEvent {}

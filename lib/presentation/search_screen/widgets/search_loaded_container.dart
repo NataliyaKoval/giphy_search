@@ -8,9 +8,11 @@ class SearchLoadedContainer extends StatelessWidget {
   const SearchLoadedContainer({
     super.key,
     required this.gifs,
+    required this.onFinishingScroll,
   });
 
   final List<Gif> gifs;
+  final VoidCallback onFinishingScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class SearchLoadedContainer extends StatelessWidget {
         Expanded(
           child: SearchResultList(
             gifs: gifs,
+            onFinishingScroll: onFinishingScroll,
           ),
         ),
       ],

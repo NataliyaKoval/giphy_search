@@ -7,8 +7,27 @@ import 'package:giphy_search/presentation/search_screen/widgets/empty_result_con
 import 'package:giphy_search/presentation/search_screen/widgets/search_loaded_container.dart';
 import 'package:giphy_search/presentation/search_screen/widgets/search_text_field.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  late TextEditingController inputController;
+
+  @override
+  void initState() {
+    super.initState();
+    inputController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    inputController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +44,7 @@ class SearchPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SearchTextField(),
+              SearchTextField(inputController: inputController,),
               const SizedBox(
                 height: 16,
               ),
@@ -45,7 +64,12 @@ class SearchPage extends StatelessWidget {
     if (state is SearchEmpty) {
       return const EmptyResultContainer();
     } else if (state is SearchLoaded) {
-      return SearchLoadedContainer(gifs: state.gifs);
+      return SearchLoadedContainer(
+        gifs: state.gifs,
+        onFinishingScroll: () {
+          context.read<SearchBloc>().add(SearchGifsEvent(inputController.text));
+        },
+      );
     } else if (state is SearchLoading) {
       return const Center(child: CircularProgressIndicator());
     } else {
