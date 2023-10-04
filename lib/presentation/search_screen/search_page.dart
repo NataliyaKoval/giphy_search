@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:giphy_search/consts/app_strings.dart';
 import 'package:giphy_search/domain/repository/repository.dart';
 import 'package:giphy_search/domain/use_cases/get_gifs_use_case.dart';
 import 'package:giphy_search/presentation/search_screen/bloc/search_bloc.dart';
@@ -38,13 +39,18 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(AppStrings.searchScreenTitle),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SearchTextField(inputController: inputController,),
+              SearchTextField(
+                inputController: inputController,
+              ),
               const SizedBox(
                 height: 16,
               ),

@@ -1,6 +1,6 @@
-import 'package:giphy_search/domain/models/downsized.dart';
-import 'package:giphy_search/domain/models/downsized_medium.dart';
-import 'package:giphy_search/domain/models/preview_gif.dart';
+import 'package:giphy_search/domain/models/gif_images/downsized.dart';
+import 'package:giphy_search/domain/models/gif_images/downsized_medium.dart';
+import 'package:giphy_search/domain/models/gif_images/preview_gif.dart';
 
 class GifImages {
   const GifImages({

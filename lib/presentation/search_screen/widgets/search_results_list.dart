@@ -24,12 +24,11 @@ class _SearchResultListState extends State<SearchResultList> {
   @override
   void initState() {
     super.initState();
+    FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
+    Size size = view.physicalSize / view.devicePixelRatio;
+    double height = size.height;
     _scrollController.addListener(() {
-      FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
-      Size size = view.physicalSize / view.devicePixelRatio;
-      double height = size.height;
-      if (_scrollController.position.pixels >
-          _scrollController.position.maxScrollExtent - height/2) {
+      if (_scrollController.position.extentAfter <= height / 2) {
         widget.onFinishingScroll();
       }
     });
@@ -44,6 +43,7 @@ class _SearchResultListState extends State<SearchResultList> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      key: ObjectKey(widget.gifs[0]),
       controller: _scrollController,
       itemCount: widget.gifs.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

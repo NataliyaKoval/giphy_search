@@ -1,7 +1,7 @@
-import 'package:giphy_search/data/entities/downsized_entity.dart';
-import 'package:giphy_search/data/entities/downsized_medium_entity.dart';
-import 'package:giphy_search/data/entities/preview_gif_entity.dart';
-import 'package:giphy_search/domain/models/gif_images.dart';
+import 'package:giphy_search/data/entities/gif_images_entity/downsized_entity.dart';
+import 'package:giphy_search/data/entities/gif_images_entity/downsized_medium_entity.dart';
+import 'package:giphy_search/data/entities/gif_images_entity/preview_gif_entity.dart';
+import 'package:giphy_search/domain/models/gif_images/gif_images.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'gif_images_entity.g.dart';

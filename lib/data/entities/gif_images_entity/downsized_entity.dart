@@ -1,4 +1,4 @@
-import 'package:giphy_search/domain/models/downsized.dart';
+import 'package:giphy_search/domain/models/gif_images/downsized.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'downsized_entity.g.dart';

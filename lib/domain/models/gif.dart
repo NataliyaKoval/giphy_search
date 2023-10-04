@@ -1,4 +1,4 @@
-import 'package:giphy_search/domain/models/gif_images.dart';
+import 'package:giphy_search/domain/models/gif_images/gif_images.dart';
 
 class Gif {
   const Gif({

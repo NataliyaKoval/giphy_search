@@ -1,4 +1,4 @@
-import 'package:giphy_search/data/entities/gif_images_entity.dart';
+import 'package:giphy_search/data/entities/gif_images_entity/gif_images_entity.dart';
 import 'package:giphy_search/domain/models/gif.dart';
 import 'package:json_annotation/json_annotation.dart';
 
