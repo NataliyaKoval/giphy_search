@@ -1,13 +1,22 @@
 part of 'search_bloc.dart';
 
 @immutable
-abstract class SearchState {}
+abstract class SearchState extends Equatable {}
 
-class SearchInitial extends SearchState {}
+class SearchInitial extends SearchState {
+  @override
+  List<Object?> get props => [];
+}
 
-class SearchLoading extends SearchState {}
+class SearchLoading extends SearchState {
+  @override
+  List<Object?> get props => [];
+}
 
-class SearchEmpty extends SearchState {}
+class SearchEmpty extends SearchState {
+  @override
+  List<Object?> get props => [];
+}
 
 class SearchLoaded extends SearchState {
   SearchLoaded({
@@ -15,6 +24,9 @@ class SearchLoaded extends SearchState {
   });
 
   final List<Gif> gifs;
+
+  @override
+  List<Object?> get props => [gifs];
 }
 
 class SearchError extends SearchState {
@@ -23,4 +35,7 @@ class SearchError extends SearchState {
   });
 
   final String message;
+
+  @override
+  List<Object?> get props => [message];
 }
