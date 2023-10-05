@@ -70,6 +70,7 @@ class _SearchPageState extends State<SearchPage> {
     if (state is SearchEmpty) {
       return const EmptyResultContainer();
     } else if (state is SearchLoaded) {
+      print(state.gifs.length);
       return SearchLoadedContainer(
         gifs: state.gifs,
         onFinishingScroll: () {
