@@ -39,9 +39,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       if (gifs.isEmpty) {
         emit(SearchEmpty());
       } else {
+        final newList = allGifs + gifs;
         allGifs.addAll(gifs);
         offset = pagination.offset + pagination.count;
-        emit(SearchLoaded(gifs: allGifs));
+        emit(SearchLoaded(gifs: newList));
       }
     } catch (e) {
       print(e);
